@@ -32,14 +32,19 @@
                                     <td>{{ $user->email }}</td>
                                     <td>{{ $user->phone }}</td>
                                     <td>
-                                        <span class="badge  {{ $user->role->name == 'admin' ? 'bg-success' : 'bg-primary' }}">{{ $user->role->name }}</span>
+                                        <span
+                                            class="badge {{ $user->role ? ($user->role->name == 'admin' ? 'bg-success' : 'bg-primary') : 'bg-primary' }}">
+                                            {{ $user->role ? $user->role->name : 'Tidak Tersedia' }}
+                                        </span>
                                     </td>
                                     <td>
-                                        <form action="{{ route('user.destroy', $user->id) }}" method="POST" class="d-inline">
+                                        <form action="{{ route('user.destroy', $user->id) }}" method="POST"
+                                            class="d-inline">
                                             <a href="{{ route('user.edit', $user->id) }}" class="btn btn-warning">Edit</a>
                                             @csrf
                                             @method('DELETE')
-                                            <button type="submit" class="btn btn-danger" onclick="return confirm('Are you sure?')">Delete</button>
+                                            <button type="submit" class="btn btn-danger"
+                                                onclick="return confirm('Are you sure?')">Delete</button>
                                         </form>
                                     </td>
                                 </tr>
