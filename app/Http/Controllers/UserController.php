@@ -2,84 +2,82 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Role;
 use App\Models\User;
-use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
-use Illuminate\View\View;
-
-
 
 class UserController extends Controller
 {
-    public function index() // Untuk menampilkan daftar data
+    public function index()
     {
-        $users = user::all();
-        return view('user.index', ['users' => $users]);
+        // Ambil semua data user dari database
+        $users = User::with('role')->get();
+
+        // Tampilkan halaman index
+        return view('user.index', compact('users'));
     }
 
-    public function show() // Untuk menampilkan table data user
+    public function create()
     {
-        // return view('user.tableUser');
-    }
-    public function detail($id) // Untuk menampilkan detail data user by id
-    {
-        // $userId = $request->get('id');
-        $user = User::find($id);
-        // Lakukan penanganan jika data pengguna tidak ditemukan
-        if (!$user) {
-            abort(404);
-        }
+        // Ambil data roles dari database
+        $roles = Role::all();
 
-        return view('user.detail', ['user' => $user]);
+        // Tampilkan form create user dengan passing data roles
+        return view('user.create', compact('roles'));
     }
-    public function create() // Untuk menampilkan halaman formulir tambah data.
-    {
-        return view('user.tambahUser');
-    }
-    public function edit() // Untuk menampilkan halaman formulir edit data
-    {
-        return view('user.editUser');
-    }
+
     public function store(Request $request)
     {
-        // Validasi input data jika diperlukan
-        $validatedData = $request->validate([
-            'nama' => 'required',
-            'pilihrole' => 'required',
-            'email' => 'required|email',
-            'telp' => 'required',
-            'alamat' => 'required',
-            'file' => 'required|file',
+        // Simpan data ke database
+        $user = User::create([
+            'name' => $request->name,
+            'email' => $request->email,
+            'phone' => $request->phone,
+            'role_id' => $request->role,
+            'password' => bcrypt('password') // default password, sementara di hardcode
         ]);
 
-        // Simpan data ke dalam database
-        $user = new User();
-        $user->nama = $request->nama;
-        $user->role = $request->pilihrole;
-        $user->email = $request->email;
-        $user->telp = $request->telp;
-        $user->alamat = $request->alamat;
-
-        // Proses unggah file jika diperlukan
-        if ($request->hasFile('file')) {
-            $file = $request->file('file');
-            // Lakukan operasi pengolahan file yang diperlukan (misalnya, simpan di direktori tertentu, ubah nama file, dll.)
-            // Contoh: $file->store('public/images');
-            // $user->file = $file->hashName(); // Contoh: Simpan nama file yang dihasilkan ke dalam kolom 'file' pada tabel user
-        }
-
-        // Simpan data ke dalam database
-        $user->save();
-
-        // Redirect ke halaman index atau halaman terkait lainnya
+        // Redirect ke halaman user.index
         return redirect()->route('user.index');
     }
 
-    public function update() // Untuk memperbarui data
+    public function edit($id)
     {
+        // Ambil data user berdasarkan id
+        $user = User::find($id);
+
+        // Ambil data roles dari database
+        $roles = Role::all();
+
+        // Tampilkan halaman edit dengan passing data user dan roles
+        return view('user.edit', compact('user', 'roles'));
     }
-    public function destroy() // Untuk menghapus data
+
+    public function update(Request $request, $id)
     {
+        // Ambil data user berdasarkan id
+        $user = User::find($id);
+
+        // Update data user
+        $user->update([
+            'name' => $request->name,
+            'email' => $request->email,
+            'phone' => $request->phone
+        ]);
+
+        // Redirect ke halaman user.index
+        return redirect()->route('user.index');
+    }
+
+    public function destroy($id)
+    {
+        // Ambil data user berdasarkan id
+        $user = User::find($id);
+
+        // Hapus data user
+        $user->delete();
+
+        // Redirect ke halaman user.index
+        return redirect()->route('user.index');
     }
 }
