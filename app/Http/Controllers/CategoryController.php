@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Category;
+use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
 
 class CategoryController extends Controller
@@ -13,6 +14,11 @@ class CategoryController extends Controller
         $categories = Category::all();
 
         return view('category.index', compact('categories'));
+        // return response()->json([
+        //     'success' => true,
+        //     'message' => 'List Data Category',
+        //     'data' => $categories
+        // ], 200);
     }
 
     public function create()
@@ -22,6 +28,15 @@ class CategoryController extends Controller
 
     public function store(Request $request)
     {
+        $validator = Validator::make($request->all(), [
+            'name' => 'required|string|min:3',
+        ]);
+
+        if ($validator->fails()) {
+            return redirect()->back()->withErrors($validator->errors())->withInput();
+        }
+
+
         // masukkan data ke database
         $category = Category::create([
             'name' => $request->name
@@ -42,6 +57,14 @@ class CategoryController extends Controller
 
     public function update(Request $request, $id)
     {
+        $validator = Validator::make($request->all(), [
+            'name' => 'required|string|min:3',
+        ]);
+
+        if ($validator->fails()) {
+            return redirect()->back()->withErrors($validator->errors())->withInput();
+        }
+
         // ambil data category berdasarkan id
         $category = Category::find($id);
 

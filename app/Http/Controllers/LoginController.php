@@ -12,12 +12,15 @@ class LoginController extends Controller
 {
     public function index()
     {
+        if (Auth::check()) {
+            return redirect()->route('dashboard');
+        }
+
         return view('auth.login');
     }
 
     public function authenticate(Request $request)
     {
-        dd($request->all());
         $validator = Validator::make($request->all(), [
             'email' => 'required|email',
             'password' => 'required'

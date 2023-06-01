@@ -104,7 +104,7 @@
         }
 
         .main-form__body .btn:last-of-type {
-            float: right;
+            margin-left: 2%;
             background: #fca44b;
             color: #fff;
         }
@@ -158,10 +158,23 @@
                         <h1>Sign-up</h1>
                     </div>
                     <div class="main-form__body">
-                        <input class="main-form__input" name="name" type="text" placeholder="Username" >
-                        <input class="main-form__input" name="phone" type="text" placeholder="Phone" >
-                        <input class="main-form__input" name="email" type="email" placeholder="Email Address" >
-                        <input class="main-form__input" type="password" placeholder="Password" >
+                        <input class="main-form__input @error('name') is-invalid @enderror" name="name" type="text" placeholder="Username" required>
+                        @error('name')
+                                <small class="text-danger">{{ $message }}</small>
+                        @enderror
+                        <input class="main-form__input @error('phone') is-invalid @enderror" name="phone" type="text" placeholder="Phone" required>
+                        @error('phone')
+                                <small class="text-danger">{{ $message }}</small>
+                        @enderror
+                        <input class="main-form__input @error('email') is-invalid @enderror" name="email" type="email" placeholder="Email Address" required>
+                        @error('email')
+                                <small class="text-danger">{{ $message }}</small>
+                        @enderror
+                        <input class="main-form__input @error('password') is-invalid @enderror" name="password" type="password" placeholder="Password" required>
+                        @error('password')
+                                <small class="text-danger">{{ $message }}</small>
+                        @enderror
+                        <a href="{{ route('login') }}" class="btn">Sign-In</a>
                         <button class="btn" type="submit">Register</button>
                     </div>
                 </form>

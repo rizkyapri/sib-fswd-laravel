@@ -104,7 +104,7 @@
         }
 
         .main-form__body .btn:last-of-type {
-            float: right;
+            margin-left: 2%;
             background: #fca44b;
             color: #fff;
         }
@@ -143,6 +143,7 @@
     <div class="container">
         <div class="row">
             <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
+
                 @if (Session::get('success'))
                     <div class="alert alert-success alert-dismissible fade show mt-3" role="alert">
                         <strong>Sukses!</strong> Akun anda berhasil dibuat.
@@ -164,8 +165,14 @@
                         <h1>Sign-in</h1>
                     </div>
                     <div class="main-form__body">
-                        <input class="main-form__input" name="email" type="email" placeholder="name@example.com" required>
-                        <input class="main-form__input" name="password" type="password" placeholder="Password" required>
+                        <input class="main-form__input @error('name') is-invalid @enderror" name="email" type="email" placeholder="name@example.com" required>
+                        @error('name')
+                                <small class="text-danger">{{ $message }}</small>
+                        @enderror
+                        <input class="main-form__input @error('password') is-invalid @enderror" name="password" type="password" placeholder="Password" required>
+                        @error('password')
+                                <small class="text-danger">{{ $message }}</small>
+                        @enderror
                         <div class="form-check mb-3">
                             <input class="form-check-input" type="checkbox" value="" id="rememberPasswordCheck">
                             <label class="form-check-label" for="rememberPasswordCheck">
@@ -173,7 +180,7 @@
                             </label>
                         </div>
                         <a href="{{ route('register') }}" class="btn">Sign-Up</a>
-                        <a class="btn " type="submit">Login</a>
+                        <button class="btn" type="submit">Login</button>
                     </div>
                 </form>
             </div>

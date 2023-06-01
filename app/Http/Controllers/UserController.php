@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Models\Role;
 use App\Models\User;
+use Dotenv\Parser\Value;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class UserController extends Controller
 {
@@ -28,6 +30,17 @@ class UserController extends Controller
 
     public function store(Request $request)
     {
+        $validator = Validator::make($request->all(), [
+           'name' => 'required|string|min:3',
+           'email' => 'required|string|email',
+           'phone' => 'required|string|min:10|max:13',
+           'password' => 'required|string|min:6|confirmed',
+        ]);
+
+        if ($validator->fails()) {
+            return redirect()->back()->withErrors($validator->errors())->withInput();
+        }
+
         // Simpan data ke database
         $user = User::create([
             'name' => $request->name,
@@ -55,6 +68,15 @@ class UserController extends Controller
 
     public function update(Request $request, $id)
     {
+        $validator = Validator::make($request->all(), [
+            'name' => 'required|string|min:3',
+            'email' => 'required|string|email|max:255|unique:users',
+            'phone' => 'required|string|min:10|max:13',
+         ]);
+
+         if ($validator->fails()) {
+             return redirect()->back()->withErrors($validator->errors())->withInput();
+         }
         // Ambil data user berdasarkan id
         $user = User::find($id);
 

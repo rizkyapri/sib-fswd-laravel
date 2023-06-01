@@ -14,17 +14,26 @@
 
                         <div class="mb-3">
                             <label for="title" class="form-label">Title</label>
-                            <input type="text" class="form-control" id="title" value="{{ $slider->title }}" name="title" required>
+                            <input type="text" class="form-control @error('title') is-invalid @enderror" id="title" value="{{ $slider->title }}" name="title" required>
+                            @error('title')
+                                <small class="text-danger">{{ $message }}</small>
+                            @enderror
                         </div>
 
                         <div class="mb-3">
                             <label for="caption" class="form-label">Caption</label>
-                            <input type="text" class="form-control" id="caption" value="{{ $slider->caption }}" name="caption" required>
+                            <input type="text" class="form-control @error('caption') is-invalid @enderror" id="caption" value="{{ $slider->caption }}" name="caption" required>
+                            @error('caption')
+                                <small class="text-danger">{{ $message }}</small>
+                            @enderror
                         </div>
 
                         <div class="mb-3">
                             <label for="image" class="form-label">Slider Image <small>(optional)</small> </label>
-                            <input class="form-control" type="file" name="image" id="image" accept=".jpg, .jpeg, .png., .webp">
+                            <input class="form-control @error('image') is-invalid @enderror" type="file" name="image" id="image" accept=".jpg, .jpeg, .png., .webp">
+                            @error('image')
+                                <small class="text-danger">{{ $message }}</small>
+                            @enderror
                         </div>
 
                         <button type="submit" class="btn btn-primary">Submit</button>
