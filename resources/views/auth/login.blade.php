@@ -104,6 +104,7 @@
         }
 
         .main-form__body .btn:last-of-type {
+            float: right;
             margin-left: 2%;
             background: #fca44b;
             color: #fff;
@@ -136,6 +137,11 @@
             letter-spacing: 2px;
             text-transform: uppercase;
         }
+
+        .no-decoration {
+        text-decoration: none !important;
+        /* optional: other styles you want to apply */
+        }
     </style>
 </head>
 
@@ -165,22 +171,25 @@
                         <h1>Sign-in</h1>
                     </div>
                     <div class="main-form__body">
-                        <input class="main-form__input @error('name') is-invalid @enderror" name="email" type="email" placeholder="name@example.com" required>
+                        <input class="main-form__input @error('name') is-invalid @enderror" name="email"
+                            type="email" placeholder="name@example.com" required>
                         @error('name')
-                                <small class="text-danger">{{ $message }}</small>
+                            <small class="text-danger">{{ $message }}</small>
                         @enderror
-                        <input class="main-form__input @error('password') is-invalid @enderror" name="password" type="password" placeholder="Password" required>
+                        <input class="main-form__input @error('password') is-invalid @enderror" name="password"
+                            type="password" placeholder="Password" required>
                         @error('password')
-                                <small class="text-danger">{{ $message }}</small>
+                            <small class="text-danger">{{ $message }}</small>
                         @enderror
-                        <div class="form-check mb-3">
-                            <input class="form-check-input" type="checkbox" value="" id="rememberPasswordCheck">
-                            <label class="form-check-label" for="rememberPasswordCheck">
-                                Remember password
-                            </label>
-                        </div>
-                        <a href="{{ route('register') }}" class="btn">Sign-Up</a>
+
                         <button class="btn" type="submit">Login</button>
+                    </div>
+                    <div class="mt-5 text-center py-5">
+                        <p class="text-center text-muted md-4 d-flex justify-content-center">Belum punya akun?
+                            <b class="ps-2">|</b>
+                            <a class="text-muted d-flex no-decoration ps-2 link-primary" href="{{ route('register') }}">Sign Up</a>
+                        </p>
+                            <a class="text-muted d-flex no-decoration justify-content-center link-primary" href="{{ route('landing') }}">Kembali</a>
                     </div>
                 </form>
             </div>

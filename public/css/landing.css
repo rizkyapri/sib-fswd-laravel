@@ -83,6 +83,7 @@
 *::before,
 *::after {
   box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
 }
 
 @media (prefers-reduced-motion: no-preference) {
@@ -90,6 +91,14 @@
     scroll-behavior: smooth;
   }
 }
+
+/* Custom Properties */
+/* a .card-title {
+    color: #1F2744;
+    text-decoration: none;
+    color: red;
+} */
+/* Custom Properties end */
 
 body {
   margin: 0;

@@ -1,4 +1,4 @@
-<nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
+<nav class="sb-sidenav accordion sb-sidenav-white" id="sidenavAccordion">
     <div class="sb-sidenav-menu">
         <div class="nav">
             @if (Auth::user()->role->name == 'Admin' || Auth::user()->role->name == 'Staff')
@@ -17,8 +17,8 @@
                 </a>
             @endif
 
-            <div class="sb-sidenav-menu-heading">Management</div>
             @if (Auth::user()->role->name == 'Admin' || Auth::user()->role->name == 'Staff')
+            <div class="sb-sidenav-menu-heading">Management</div>
                 <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
                     <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
                     Product
@@ -57,7 +57,7 @@
 
         </div>
     </div>
-    <div class="sb-sidenav-footer">
+    <div class="sb-sidenav-footer text-muted">
         <div class="small">Logged in as:</div>
         {{ Auth::user()->name }} ({{ Auth::user()->role->name }})
     </div>

@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Models\Slider;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
-use Illuminate\Support\Facades\Validator;
 
 class SliderController extends Controller
 {
@@ -26,16 +25,6 @@ class SliderController extends Controller
 
     public function store(Request $request)
     {
-        $validator = Validator::make($request->all(), [
-            'title' => 'required|string|min:3',
-            'caption' => 'required|string|min:3',
-            'image' => 'required|image|mimes:jpeg,png,jpg|max:2048',
-        ]);
-
-        if($validator->fails()){
-            return redirect()->back()->withErrors($validator->errors())->withInput();
-        }
-
         // ubah nama file gambar dengan angka random
         $imageName = time().'.'.$request->image->extension();
 
@@ -67,15 +56,6 @@ class SliderController extends Controller
     {
         // cek jika user mengupload gambar di form
         if ($request->hasFile('image')) {
-            $validator = Validator::make($request->all(), [
-                'title' => 'required|string|min:3',
-                'caption' => 'required|string|min:3',
-                'image' => 'required|image|mimes:jpeg,png,jpg|max:2048',
-            ]);
-
-            if($validator->fails()){
-                return redirect()->back()->withErrors($validator->errors())->withInput();
-            }
 
             // ambil nama file gambar lama dari database
             $old_image = Slider::find($id)->image;
@@ -98,15 +78,6 @@ class SliderController extends Controller
             ]);
 
         } else {
-            $validator = Validator::make($request->all(), [
-                'title' => 'required|string|min:3',
-                'caption' => 'required|string|min:3',
-            ]);
-
-            if($validator->fails()){
-                return redirect()->back()->withErrors($validator->errors())->withInput();
-            }
-
             // jika user tidak mengupload gambar
             // update data sliders hnaya untuk title dan caption
             Slider::where('id', $id)->update([

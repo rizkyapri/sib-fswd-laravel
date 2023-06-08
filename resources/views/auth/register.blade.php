@@ -104,6 +104,7 @@
         }
 
         .main-form__body .btn:last-of-type {
+            float: right;
             margin-left: 2%;
             background: #fca44b;
             color: #fff;
@@ -135,6 +136,10 @@
             color: #cccccc;
             letter-spacing: 2px;
             text-transform: uppercase;
+        }
+        .no-decoration {
+        text-decoration: none !important;
+        /* optional: other styles you want to apply */
         }
     </style>
 </head>
@@ -174,8 +179,12 @@
                         @error('password')
                                 <small class="text-danger">{{ $message }}</small>
                         @enderror
-                        <a href="{{ route('login') }}" class="btn">Sign-In</a>
                         <button class="btn" type="submit">Register</button>
+                    </div>
+                    <div class="mt-5 text-center py-5">
+                        <p class="text-center text-muted md-4 d-flex justify-content-center"> Sudah punya akun?
+                            <b class="ps-2">|</b>
+                            <a class="text-muted d-flex no-decoration ps-2 link-primary" href="{{ route('login') }}">Sign In</a></p>
                     </div>
                 </form>
             </div>

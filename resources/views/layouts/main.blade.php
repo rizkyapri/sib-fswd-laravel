@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <meta name="description" content="" />
     <meta name="author" content="" />
-    <title>Dashboard - SB Admin</title>
+    <title>Kinoy Store</title>
     <link href="{{ asset('css/styles.css') }}" rel="stylesheet" />
     <link href="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/style.min.css" rel="stylesheet" />
     <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
@@ -15,18 +15,19 @@
 </head>
 
 <body class="sb-nav-fixed">
-    <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
+    <nav class="sb-topnav navbar navbar-expand navbar-light" style="background-color: #F5F5F5">
         <!-- Navbar Brand-->
-        <a class="navbar-brand ps-3" href="#">Start Bootstrap</a>
+        <a class="navbar-brand d-flex align-items-center ps-3" href="#" style="white-space: nowrap;">
+                <span class="text-danger text-uppercase fw-bolder font-monospace">Ki</span>
+                <span class="text-success text-uppercase fw-bolder font-monospace">noy</span>
+                <span class="text-primary text-uppercase fw-bolder font-monospace">Sto</span>
+                <span class="text-warning text-uppercase fw-bolder font-monospace">re</span>
+        </a>
         <!-- Sidebar Toggle-->
         <button class="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0" id="sidebarToggle" href="#!"><i class="fas fa-bars"></i></button>
         <!-- Navbar Search-->
-        <form class="d-none d-md-inline-block form-inline ms-auto me-0 me-md-3 my-2 my-md-0">
-            <div class="input-group">
-                <input class="form-control" type="text" placeholder="Search for..." aria-label="Search for..." aria-describedby="btnNavbarSearch" />
-                <button class="btn btn-primary" id="btnNavbarSearch" type="button"><i class="fas fa-search"></i></button>
-            </div>
-        </form>
+        <span class="d-none d-md-inline-block form-inline ms-auto me-0 me-md-3 my-2 my-md-0">
+        </span>
         <!-- Navbar-->
         @include('includes.navbar')
     </nav>
@@ -50,6 +51,7 @@
     <script src="{{ asset('js/chart-area-demo.js') }}"></script>
     <script src="{{ asset('js/chart-bar-demo.js') }}"></script>
     <script src="{{ asset('js/datatables-demo.js') }}"></script>
+    <script src="{{ asset('js/datables-simple-demo.js') }}"></script>
 </body>
 
 </html>

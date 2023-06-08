@@ -1,7 +1,7 @@
 @extends('layouts.main')
 
 @section('content')
-    <main>
+    <main style="background-color: #f5f8fa">
         <div class="container-fluid px-4">
             <h1 class="my-4">Create Slider</h1>
 
@@ -13,26 +13,20 @@
 
                         <div class="mb-3">
                             <label for="title" class="form-label">Title</label>
-                            <input type="text" class="form-control @error('title') is-invalid @enderror" id="title" name="title" required>
-                            @error('title')
-                                <small class="text-danger">{{ $message }}</small>
-                            @enderror
+                            <input type="text" class="form-control" id="title" name="title">
+
                         </div>
 
                         <div class="mb-3">
                             <label for="caption" class="form-label">Caption</label>
-                            <input type="text" class="form-control @error('caption') is-invalid @enderror" id="caption" name="caption" required>
-                            @error('caption')
-                                <small class="text-danger">{{ $message }}</small>
-                            @enderror
+                            <input type="text" class="form-control" id="caption" name="caption">
+
                         </div>
 
                         <div class="mb-3">
                             <label for="image" class="form-label">Slider Image</label>
-                            <input class="form-control @error('image') is-invalid @enderror" type="file" name="image" id="image" accept=".jpg, .jpeg, .png., .webp">
-                            @error('image')
-                                <small class="text-danger">{{ $message }}</small>
-                            @enderror
+                            <input class="form-control" type="file" name="image" id="image" accept=".jpg, .jpeg, .png, .webp">
+
                         </div>
 
                         <button type="submit" class="btn btn-primary">Submit</button>

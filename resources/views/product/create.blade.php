@@ -1,7 +1,7 @@
 @extends('layouts.main')
 
 @section('content')
-    <main>
+    <main style="background-color: #f5f8fa; height : 100%;">
         <div class="container-fluid px-4">
             <h1 class="my-4">Create Product</h1>
 
