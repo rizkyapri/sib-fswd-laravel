@@ -11,6 +11,7 @@ use App\Http\Controllers\SliderController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\DashboardController;
+use App\Models\Category;
 
 /*
 |--------------------------------------------------------------------------
@@ -23,15 +24,26 @@ use App\Http\Controllers\DashboardController;
 |
 */
 
+// Landing
 Route::get('/', [LandingController::class, 'index'])->name('landing');
 
+// Register
 Route::get('/register', [RegisterController::class, 'index'])->name('register');
 Route::post('/register', [RegisterController::class, 'store'])->name('register.store');
 
+// Login
 Route::get('/login', [LoginController::class, 'index'])->name('login');
 Route::post('/login', [LoginController::class, 'authenticate'])->name('login.authenticate');
 
+// Show detail product
+Route::get('product/show/{id}', [ProductController::class, 'show'])->name('product.show');
+Route::get('/page', [LandingController::class, 'show'])->name('landing.page');
 
+// Search product
+Route::get('/search', [LandingController::class, 'find'])->name('landing.find');
+
+
+// groups middleware
 Route::middleware('auth')->group(function() {
     Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
 

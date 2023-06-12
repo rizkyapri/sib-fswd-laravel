@@ -23,8 +23,15 @@
                         </div>
                         <div class="mb-3">
                             <label for="name" class="form-label">Name</label>
-                            <input type="text" class="form-control @error('name') is-invalid @enderror" id="name" value="{{ old('name') }}" name="name" required>
+                            <textarea type="text" class="form-control @error('name') is-invalid @enderror" id="name" value="{{ old('name') }}" name="name" rows="3" required></textarea>
                             @error('name')
+                                <small class="text-danger">{{ $message }}</small>
+                            @enderror
+                        </div>
+                        <div class="mb-3">
+                            <label for="description" class="form-label">Description</label>
+                            <input type="text" class="form-control @error('description') is-invalid @enderror" id="description" value="{{ old('description') }}" name="description" required>
+                            @error('description')
                                 <small class="text-danger">{{ $message }}</small>
                             @enderror
                         </div>

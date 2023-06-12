@@ -1,8 +1,8 @@
-<nav class="sb-sidenav accordion sb-sidenav-white" id="sidenavAccordion">
+<nav class="sb-sidenav accordion " style="background-color: #ece8dc; color:#2B3467;" id="sidenavAccordion">
     <div class="sb-sidenav-menu">
         <div class="nav">
             @if (Auth::user()->role->name == 'Admin' || Auth::user()->role->name == 'Staff')
-                <div class="sb-sidenav-menu-heading">Core</div>
+                <div class="sb-sidenav-menu-heading">Dashboard</div>
                 <a class="nav-link" href="{{ route('dashboard') }}">
                     <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
                     Dashboard
@@ -57,7 +57,7 @@
 
         </div>
     </div>
-    <div class="sb-sidenav-footer text-muted">
+    <div class="sb-sidenav-footer text-white bg-secondary">
         <div class="small">Logged in as:</div>
         {{ Auth::user()->name }} ({{ Auth::user()->role->name }})
     </div>

@@ -23,8 +23,22 @@ class ProductController extends Controller
         }
     }
 
-    public function create()
+    public function show($id)
     {
+        $product = Product::where('id', $id)->with('category')->first();
+
+        $related = Product::where('category_id', $product->category->id)->inRandomOrder()->limit(4)->get();
+
+        if ($product) {
+            return view('product.show', compact('product', 'related'));
+        } else {
+            abort(404);
+        }
+
+    }
+
+    public function create()
+{
         $brands = Brand::all();
         $categories = Category::all();
 
@@ -37,6 +51,7 @@ class ProductController extends Controller
         $validator = Validator::make($request->all(), [
             'category' => 'required',
             'name' => 'required|string|min:3',
+            'description' => 'required',
             'price' => 'required|integer',
             'sale_price' => 'required|integer',
             'brand' => 'required|string',
@@ -54,13 +69,15 @@ class ProductController extends Controller
         Storage::putFileAs('public/product', $request->image, $imageName);
 
         $product = Product::create([
-            'category_id' => $request->category,
+            'category_id' => $request->category, // Tetapkan kategori secara eksplisit
             'name' => $request->name,
+            'description' => $request->input('description'),
             'price' => $request->price,
             'sale_price' => $request->sale_price,
             'brands' => $request->brand,
             'image' => $imageName,
         ]);
+
 
         return redirect()->route('product.index');
     }
@@ -85,6 +102,7 @@ class ProductController extends Controller
             $validator = Validator::make($request->all(), [
                 'category' => 'required',
                 'name' => 'required|string|min:3',
+                'description' => 'required',
                 'price' => 'required|integer',
                 'sale_price' => 'required|integer',
                 'brand' => 'required|string',
@@ -110,6 +128,7 @@ class ProductController extends Controller
             Product::where('id', $id)->update([
                 'category_id' => $request->category,
                 'name' => $request->name,
+                'description' => $request->input('description'),
                 'price' => $request->price,
                 'sale_price' => $request->sale_price,
                 'brands' => $request->brand,
@@ -120,6 +139,7 @@ class ProductController extends Controller
             $validator = Validator::make($request->all(), [
                 'category' => 'required',
                 'name' => 'required|string|min:3',
+                'description' => 'required',
                 'price' => 'required|integer',
                 'sale_price' => 'required|integer',
                 'brand' => 'required|string',
@@ -133,6 +153,7 @@ class ProductController extends Controller
             Product::where('id', $id)->update([
                 'category_id' => $request->category,
                 'name' => $request->name,
+                'description' => $request->input('description'),
                 'price' => $request->price,
                 'sale_price' => $request->sale_price,
                 'brands' => $request->brand,
