@@ -7,17 +7,82 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <meta name="description" content="" />
     <meta name="author" content="" />
+    <link rel="shortcut icon" href="{{ asset('images/webicon.png') }}" type="image/x-icon">
     <title>Kinoy Store</title>
-    <link href="{{ asset('css/styles.css') }}" rel="stylesheet" />
+    {{-- CSS link --}}
     <link href="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/style.min.css" rel="stylesheet" />
-    <link href="https://cdn.datatables.net/1.13.4/css/dataTables.bootstrap5.min.css" rel="stylesheet" />
-    <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
+    <link href="{{ asset('css/styles.css') }}" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous" />
+    <style>
+        .card {
+            background-color: #fff;
+            border-radius: 10px;
+            border: none;
+            position: relative;
+            margin-bottom: 30px;
+            box-shadow: 0 0.46875rem 2.1875rem rgba(90, 97, 105, 0.1), 0 0.9375rem 1.40625rem rgba(90, 97, 105, 0.1), 0 0.25rem 0.53125rem rgba(90, 97, 105, 0.12), 0 0.125rem 0.1875rem rgba(90, 97, 105, 0.1);
+        }
+
+        .l-bg-cherry {
+            background: linear-gradient(to right, #493240, #f09) !important;
+            color: #fff;
+        }
+
+        .l-bg-blue-dark {
+            background: linear-gradient(to right, #373b44, #4286f4) !important;
+            color: #fff;
+        }
+
+        .l-bg-green-dark {
+            background: linear-gradient(to right, #0a504a, #38ef7d) !important;
+            color: #fff;
+        }
+
+        .l-bg-red-dark {
+            background: linear-gradient(to right, #a80808, #ff5656) !important;
+            color: #fff;
+        }
+
+        .card .card-statistic-3 .card-icon-large .fas,
+        .card .card-statistic-3 .card-icon-large .far,
+        .card .card-statistic-3 .card-icon-large .fab,
+        .card .card-statistic-3 .card-icon-large .fal {
+            font-size: 110px;
+        }
+
+        .card .card-statistic-3 .card-icon {
+            text-align: center;
+            line-height: 50px;
+            margin-left: 15px;
+            color: #000;
+            position: absolute;
+            right: -5px;
+            top: 20px;
+            opacity: 0.1;
+        }
+
+        .l-bg-cyan {
+            background: linear-gradient(135deg, #289cf5, #84c0ec) !important;
+            color: #fff;
+        }
+
+        .l-bg-green {
+            background: linear-gradient(135deg, #23bdb8 0%, #43e794 100%) !important;
+            color: #fff;
+        }
+
+        .l-bg-orange {
+            background: linear-gradient(to right, #f9900e, #ffba56) !important;
+            color: #fff;
+        }
+    </style>
 </head>
 
 <body class="sb-nav-fixed">
     <nav class="sb-topnav navbar navbar-expand navbar-light" style="background-color: #ffffff">
         <!-- Navbar Brand-->
         <a class="navbar-brand d-flex align-items-center ps-3" href="#" style="white-space: nowrap;">
+            <img src="{{ asset('images/logo.png') }}" alt="" class="img-fluid" style="height: 40px;">
             <span class="text-danger text-uppercase fw-bolder font-monospace">Ki</span>
             <span class="text-success text-uppercase fw-bolder font-monospace">noy</span>
             <span class="text-primary text-uppercase fw-bolder font-monospace">Sto</span>
@@ -44,26 +109,26 @@
         </div>
     </div>
     {{-- SCRIPT --}}
-    <script src="https://code.jquery.com/jquery-3.7.0.min.js"
-        integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g=" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous">
-    </script>
-    <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
-    <script src="https://cdn.datatables.net/1.13.4/js/dataTables.bootstrap5.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script>
-    {{-- <script src="{{ asset('js/scripts.js') }}"></script> --}}
-    {{-- <script src="{{ asset('js/chart-area-demo.js') }}"></script> --}}
-    {{-- <script src="{{ asset('js/chart-bar-demo.js') }}"></script> --}}
-    {{-- <script src="{{ asset('js/datatables-demo.js') }}"></script> --}}
-    {{-- <script src="{{ asset('js/datables-simple-demo.js') }}"></script> --}}
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+    <script src="{{ asset('js/scripts.js') }}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/umd/simple-datatables.min.js" crossorigin="anonymous"></script>
+    <script src="{{ asset('js/datables-simple-demo.js') }}"></script>
     <script>
-        $(document).ready(function() {
-            $('#dataTable').DataTable({
-                // paging: false,
-                // searching: false
+        document.addEventListener('DOMContentLoaded', function() {
+            const dataTable = new simpleDatatables.DataTable('#dataTable', {
+                // opsi-opsi konfigurasi yang Anda butuhkan
             });
         });
     </script>
+
+    {{-- Script off --}}
+    {{-- <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script> --}}
+    {{-- <script src="https://code.jquery.com/jquery-3.7.0.min.js" integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g=" crossorigin="anonymous"></script> --}}
+    {{-- <script src="{{ asset('js/datatables-demo.js') }}"></script> --}}
+    {{-- <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script> --}}
+    {{-- <script src="https://cdn.datatables.net/1.13.4/js/dataTables.bootstrap5.min.js"></script> --}}
+    {{-- <script src="{{ asset('js/chart-area-demo.js') }}"></script>
+    <script src="{{ asset('js/chart-bar-demo.js') }}"></script> --}}
 </body>
 
 </html>

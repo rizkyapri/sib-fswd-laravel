@@ -23,14 +23,14 @@
                         </div>
                         <div class="mb-3">
                             <label for="name" class="form-label">Name</label>
-                            <textarea type="text" class="form-control @error('name') is-invalid @enderror" id="name" value="{{ old('name') }}" name="name" rows="3" required></textarea>
+                            <input type="text" class="form-control @error('name') is-invalid @enderror" id="name" value="{{ old('name') }}" name="name"  required>
                             @error('name')
                                 <small class="text-danger">{{ $message }}</small>
                             @enderror
                         </div>
                         <div class="mb-3">
                             <label for="description" class="form-label">Description</label>
-                            <input type="text" class="form-control @error('description') is-invalid @enderror" id="description" value="{{ old('description') }}" name="description" required>
+                            <textarea type="text" class="form-control @error('description') is-invalid @enderror" id="description" value="{{ old('description') }}" name="description" rows="3" required></textarea>
                             @error('description')
                                 <small class="text-danger">{{ $message }}</small>
                             @enderror
@@ -64,7 +64,7 @@
 
                         <div class="mb-3">
                             <label for="image" class="form-label">Product Image</label>
-                            <input class="form-control @error('image') is-invalid @enderror" type="file" name="image" id="image" accept=".jpg, .jpeg, .png., .webp">
+                            <input class="form-control @error('image') is-invalid @enderror" type="file" name="image" id="image" accept=".jpg, .jpeg, .png, .webp">
                             @error('image')
                                 <small class="text-danger">{{ $message }}</small>
                             @enderror

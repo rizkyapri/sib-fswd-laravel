@@ -15,5 +15,6 @@ class Slider extends Model
         'caption',
         'image',
         'description',
+        'approve',
     ];
 }

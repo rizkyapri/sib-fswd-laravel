@@ -8,7 +8,7 @@
     <meta name="author" content="" />
     <title>KinoyStore</title>
     <!-- Favicon-->
-    <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
+    <link rel="shortcut icon" href="{{ asset('images/webicon.png') }}" type="image/x-icon">
     {{-- animated on scroll --}}
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     {{-- animated hover --}}
@@ -33,6 +33,7 @@
     <nav class="navbar scrolled navbar-expand-lg navbar-secondary bg-gradient-dark fixed-top">
         <div class="container px-4 px-lg-5">
             <div class="d-flex justify-content-start">
+                <img src="{{ asset('images/logo.png') }}" alt="" class="img-fluid" style="height: 40px;">
                 <a class="navbar-brand d-flex align-items-center" href="#" style="white-space: nowrap;">
                     <span class="text-danger text-uppercase fw-bolder font-monospace">Ki</span>
                     <span class="text-success text-uppercase fw-bolder font-monospace">noy</span>
@@ -85,8 +86,12 @@
         <div class="carousel-inner">
             @foreach ($sliders as $slider)
                 <div class="carousel-item {{ $loop->first ? 'active' : '' }}" data-bs-interval="3000">
-                    <img src="{{ asset('storage/slider/' . $slider->image) }}" class="d-block w-100"
-                        alt="{{ $slider->image }}">
+                    {{-- cek apakah slider memiliki image --}}
+                    @if ($slider->image)
+                    <img src="{{ asset('storage/slider/' . $slider->image) }}" class="d-block w-100" alt="{{ $slider->image }}">
+                    @else
+                    <img src="{{ asset('images/defaultbanner.png') }}" class="d-block w-100" alt="defaultbanner">
+                    @endif
                     <div class="carousel-caption d-none d-md-block">
                         <h5>{{ $slider->title }}</h5>
                         <p>{{ $slider->caption }}</p>

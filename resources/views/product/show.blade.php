@@ -8,7 +8,7 @@
     <meta name="author" content="" />
     <title>KinoyStore</title>
     <!-- Favicon-->
-    <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+    <link rel="shortcut icon" href="{{ asset('images/webicon.png') }}" type="image/x-icon">
     <!-- Bootstrap icons-->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" />
     <!-- Core theme CSS (includes Bootstrap)-->
@@ -21,6 +21,7 @@
     <nav class="navbar scrolled navbar-expand-lg navbar-secondary bg-gradient-dark fixed-top">
         <div class="container px-4 px-lg-5">
             <div class="d-flex justify-content-start">
+                <img src="{{ asset('images/logo.png') }}" alt="" class="img-fluid" style="height: 40px;">
                 <a class="navbar-brand d-flex align-items-center" href="{{ route('landing') }}"
                     style="white-space: nowrap;">
                     <span class="text-danger text-uppercase fw-bolder font-monospace">Ki</span>
@@ -36,9 +37,10 @@
             </button>
             <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
                 <ul class="navbar-nav mb-2 mb-lg-0">
-                    <li class="nav-item"><a class="nav-link " aria-current="page" href="{{ route('landing') }}">Home</a>
-                    </li>
-                    <li class="nav-item"><a class="nav-link" aria-current="page" href="#products">Products</a></li>
+                    <li class="nav-item"><a class="nav-link " aria-current="page" href="{{ route('landing') }}">Home</a></li>
+                    <li class="nav-item"><a class="nav-link " aria-current="page" href="{{ route('landing') }}#about">About</a></li>
+                    <li class="nav-item"><a class="nav-link active" aria-current="page" href="#products">Products</a></li>
+                    <li class="nav-item"><a class="nav-link " aria-current="page" href="{{ route('landing') }}#contact">Contact</a></li>
                     @auth
                         <li class="nav-item">
                             <a href="{{ route('dashboard') }}" class="btn btn-outline-secondary">

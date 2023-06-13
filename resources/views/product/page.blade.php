@@ -8,7 +8,7 @@
     <meta name="author" content="" />
     <title>KinoyStore</title>
     <!-- Favicon-->
-    <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+    <link rel="shortcut icon" href="{{ asset('images/webicon.png') }}" type="image/x-icon">
     <!-- Bootstrap icons-->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" />
     <!-- Core theme CSS (includes Bootstrap)-->
@@ -21,6 +21,7 @@
     <nav class="navbar scrolled navbar-expand-lg navbar-secondary bg-gradient-dark fixed-top">
         <div class="container px-4 px-lg-5">
             <div class="d-flex justify-content-start">
+                <img src="{{ asset('images/logo.png') }}" alt="" class="img-fluid" style="height: 40px;">
                 <a class="navbar-brand d-flex align-items-center" href="{{ route('landing') }}"
                     style="white-space: nowrap;">
                     <span class="text-danger text-uppercase fw-bolder font-monospace">Ki</span>
@@ -36,9 +37,10 @@
             </button>
             <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
                 <ul class="navbar-nav mb-2 mb-lg-0">
-                    <li class="nav-item"><a class="nav-link " aria-current="page" href="{{ route('landing') }}">Home</a>
-                    </li>
-                    <li class="nav-item"><a class="nav-link" aria-current="page" href="#products">Products</a></li>
+                    <li class="nav-item"><a class="nav-link " aria-current="page" href="{{ route('landing') }}">Home</a></li>
+                    <li class="nav-item"><a class="nav-link " aria-current="page" href="{{ route('landing') }}#about">About</a></li>
+                    <li class="nav-item"><a class="nav-link active" aria-current="page" href="#products">Products</a></li>
+                    <li class="nav-item"><a class="nav-link " aria-current="page" href="{{ route('landing') }}#contact">Contact</a></li>
                     @auth
                         <li class="nav-item">
                             <a href="{{ route('dashboard') }}" class="btn btn-outline-secondary">
@@ -68,7 +70,8 @@
             <span class="text-primary text-capitalize fw-bolder font-monospace">Katalog</span>
         </p>
         <div class="d-flex justify-content-between">
-            <a class="btn btn-success d-flex justify-content-start" href="{{ route('landing.find') }}">Cari Produk<i class="bi bi-search ps-2"></i></a>
+            <a class="btn btn-success d-flex justify-content-start" href="{{ route('landing.find') }}">Cari Produk<i
+                    class="bi bi-search ps-2"></i></a>
             <div class="dropdown">
                 <button class="btn btn-success dropdown-toggle" id="navbarDropdown" href="#" role="button"
                     data-bs-toggle="dropdown" aria-expanded="false">
@@ -132,14 +135,13 @@
                                 <div class="bi-star-fill"></div>
                             @endfor
                             @auth
-                            <a href="https://wa.me/6285691393029?text={{ urlencode('Saya ingin membeli produk ' . $product->name) }}"
-                                class="btn btn-outline-success mt-2">
-                                Pesan</a>
+                                <a href="https://wa.me/6285691393029?text={{ urlencode('Saya ingin membeli produk ' . $product->name) }}"
+                                    class="btn btn-outline-success mt-2">
+                                    Pesan</a>
                             @endauth
                             @guest
-                            <a href="{{ route('login') }}"
-                                class="btn btn-outline-success mt-2">
-                                Pesan</a>
+                                <a href="{{ route('login') }}" class="btn btn-outline-success mt-2">
+                                    Pesan</a>
                             @endguest
                             <a href="{{ route('product.show', ['id' => $product->id]) }}"
                                 class="btn btn-outline-success mt-2">
@@ -156,9 +158,29 @@
     </section>
     <!-- Product section-->
     <!-- Footer-->
-    <footer class="py-5 bg-dark">
+    <footer class="bg-dark text-white pt-5 py-3">
         <div class="container">
-            <p class="m-0 text-center text-white">Copyright &copy; Kinoy Store 2023</p>
+            <div class="row">
+                <div class="col-6 px-4">
+                    <a class="navbar-brand d-flex align-items-center h2" href="#" style="white-space: nowrap;">
+                        <h2 class="text-danger text-uppercase fw-bolder font-monospace">Ki</h2>
+                        <h2 class="text-success text-uppercase fw-bolder font-monospace">noy</h2>
+                        <h2 class="text-primary text-uppercase fw-bolder font-monospace">Sto</h2>
+                        <h2 class="text-warning text-uppercase fw-bolder font-monospace">re</h2>
+                    </a>
+                    <p>KinoyStore merupakan toko dimana anda mendapatkan gear game terbaik.</p>
+                </div>
+                <div class="col-6 px-4" style="font-size: 1.1rem;>
+                    <small class="md-5 d-block">
+                    Developed by</small>
+                    <strong class="d-block">Rizky Apriansyah</strong>
+                    <a class="icon" href="https://www.linkedin.com/in/aprizky/" target="_blank"><i class="bi bi-linkedin"></i></a>
+                    <a class="icon" href="https://github.com/rizkyapri" target="_blank"><i class="bi bi-github"></i></a>
+                    <a class="icon" href="mailto:rizkyapriansyah625@gmail.com" target="_blank"><i class="bi bi-envelope"></i></a>
+                </div>
+            </div>
+            <hr>
+            <p class="text-center"> Copyright &copy; kinoy Store 2023</p>
         </div>
     </footer>
     <!-- Bootstrap core JS-->

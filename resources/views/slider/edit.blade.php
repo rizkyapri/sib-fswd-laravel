@@ -30,7 +30,7 @@
 
                         <div class="mb-3">
                             <label for="image" class="form-label">Slider Image <small>(optional)</small> </label>
-                            <input class="form-control @error('image') is-invalid @enderror" type="file" name="image" id="image" accept=".jpg, .jpeg, .png., .webp">
+                            <input class="form-control @error('image') is-invalid @enderror" type="file" name="image" id="image" accept=".jpg, .jpeg, .png, .webp">
                             @error('image')
                                 <small class="text-danger">{{ $message }}</small>
                             @enderror
