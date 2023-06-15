@@ -81,12 +81,10 @@
                 </form>
             </div>
         </div>
-
-
         <div class="row text-center product py-3" data-aos="fade-up" data-aos-offset="250" data-aos-duration="900">
             @forelse ($products as $product)
                 <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
-                    <div class="card h-100">
+                    <div class="card">
                         @if ($product->sale_price != 0)
                             <!-- Sale badge-->
                             <div class="badge bg-warning text-white position-absolute top-0 end-0">Sale</div>
@@ -136,7 +134,7 @@
     </section>
     <!-- Product section-->
     <!-- Footer-->
-    <footer class="bg-dark text-white pt-5 py-3">
+    <footer class="text-white pt-5 py-3" style="background-color: #082858">
         <div class="container">
             <div class="row">
                 <div class="col-6 px-4">
@@ -148,13 +146,12 @@
                     </a>
                     <p>KinoyStore merupakan toko dimana anda mendapatkan gear game terbaik.</p>
                 </div>
-                <div class="col-6 px-4" style="font-size: 1.1rem;>
+                <div class="col-6 px-4" style="font-size: 1.1rem;">
                     <small class="md-5 d-block">
                     Developed by</small>
                     <strong class="d-block">Rizky Apriansyah</strong>
-                    <a class="icon" href="https://www.linkedin.com/in/aprizky/" target="_blank"><i class="bi bi-linkedin"></i></a>
-                    <a class="icon" href="https://github.com/rizkyapri" target="_blank"><i class="bi bi-github"></i></a>
-                    <a class="icon" href="mailto:rizkyapriansyah625@gmail.com" target="_blank"><i class="bi bi-envelope"></i></a>
+                    <a class="icon text-white" href="https://www.linkedin.com/in/aprizky/" target="_blank"><i class="bi bi-linkedin"></i></a>
+                    <a class="icon text-warning" href="mailto:rizkyapriansyah625@gmail.com" target="_blank"><i class="bi bi-envelope"></i></a>
                 </div>
             </div>
             <hr>

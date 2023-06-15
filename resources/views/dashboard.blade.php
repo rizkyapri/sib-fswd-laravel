@@ -106,6 +106,62 @@
             </div>
         </div>
     </main>
+    {{-- slider approve --}}
+    <section id="products" class="container-fluid px-4 " style="background-color: #f5f8fa; height : 100%;">
+        <h1 class="mt-4">Sliders</h1>
+        <ol class="breadcrumb mb-4">
+            <li class="breadcrumb-item active">Approved and Rejected</li>
+        </ol>
+        <div class="row text-center product py-3" data-aos="fade-up" data-aos-offset="250" data-aos-duration="900">
+            <div class="col">
+                <!-- Slider main container -->
+                <div class="swiper slider-mySwiper">
+                    <!-- Additional required wrapper -->
+                    <div class="swiper-wrapper">
+                        <!-- Slides -->
+                        @forelse ($sliders as $slider)
+                            @if ($slider->approve)
+                                <div class="swiper-slide" style="width: 290px; margin: 0 auto;">
+                                    <div class="card" style="width: 290px;">
+                                        <img src="{{ asset('storage/slider/' . $slider->image) }}" class="card-img-top"
+                                            alt="slider">
+                                        <div class="card-body">
+                                            <div class="d-flex flex-column align-items-center">
+                                                <div class="badge bg-success">Approved</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            @else
+                            <div class="swiper-slide" style="width: 290px; margin: 0 auto;">
+                                <div class="card" style="width: 290px;">
+                                    <img src="{{ asset('storage/slider/' . $slider->image) }}" class="card-img-top"
+                                        alt="slider">
+                                    <div class="card-body">
+                                        <div class="d-flex flex-column align-items-center">
+                                            <div class="badge bg-danger">Rejected</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            @endif
+                        @empty
+                            <div class="alert alert-secondary w-100 text-center" role="alert">
+                                <h4>Produk belum tersedia</h4>
+                            </div>
+                        @endforelse
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- If we need navigation buttons -->
+        <div class="row">
+            <div class="toogle-slider d-flex justify-content-end mt-1">
+                <i class="fa-solid fa-square-caret-left slider-left" style="font-size: 2.2rem;"></i>
+                <i class="fa-solid fa-square-caret-right slider-right" style="font-size: 2.2rem; margin-left: 10px;"></i>
+            </div>
+        </div>
+    </section>
     {{-- card approve --}}
     <section id="products" class="container-fluid px-4 " style="background-color: #f5f8fa; height : 100%;">
         <h1 class="mt-4">Products</h1>
@@ -207,11 +263,12 @@
         <!-- If we need navigation buttons -->
         <div class="row">
             <div class="toogle-slider d-flex justify-content-end mt-1">
-                <i class="fa-solid fa-square-caret-left" style="font-size: 2.2rem;"></i>
-                <i class="fa-solid fa-square-caret-right" style="font-size: 2.2rem; margin-left: 10px;"></i>
+                <i class="fa-solid fa-square-caret-left product-left" style="font-size: 2.2rem;"></i>
+                <i class="fa-solid fa-square-caret-right product-right" style="font-size: 2.2rem; margin-left: 10px;"></i>
             </div>
         </div>
     </section>
+
 
 
 @endsection

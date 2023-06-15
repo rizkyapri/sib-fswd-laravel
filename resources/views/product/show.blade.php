@@ -117,61 +117,81 @@
     <section class="py-5 bg-light">
         <div class="container px-4 px-lg-5 mt-5">
             <h2 class="fw-bolder mb-4">Related products</h2>
-            <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
-                @foreach ($related as $product)
-                    <div class="col mb-5">
-                        <div class="card text-center" style="width: 250px;">
-                            @if ($product['sale_price'] != 0)
+            <div class="row text-center product py-3" data-aos="fade-up" data-aos-offset="250" data-aos-duration="900">
+                @forelse ($related as $product)
+                    <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+                        <div class="card">
+                            @if ($product->sale_price != 0)
                                 <!-- Sale badge-->
-                                <div class="badge bg-warning text-white position-absolute"
-                                    style="top: 0.5rem; right: 0.5rem">Sale</div>
+                                <div class="badge bg-warning text-white position-absolute top-0 end-0">Sale</div>
                             @endif
-                            <img src="{{ asset('storage/product/' . $product->image) }}"
-                                class="img-fluid rounded-start p-3" alt="{{ $product->name }}">
-                            <small class="text-strong text-center">{{ $product->category->name }}</small>
+                            <img src="{{ asset('storage/product/' . $product->image) }}" class="card-img-top"
+                                alt="{{ $product->name }}">
                             <div class="card-body">
                                 <h5 class="card-title fw-bold text-capitalize">{{ $product->name }}</h5>
-                                <small class="d-flex justify-content-start mb-3 text-muted fs-6">
+                                <small class="text-strong text-center">{{ $product->category->name }}</small>
+                                <div class="d-flex justify-content-center mb-3 text-muted fs-6">
                                     @for ($i = 0; $i < $product->rating; $i++)
                                         <div class="bi-star-fill"></div>
                                     @endfor
-                                </small>
+                                </div>
                                 <!-- Product price-->
-                                @if ($product['sale_price'] != 0)
+                                @if ($product->sale_price != 0)
                                     <span
                                         class="text-muted text-decoration-line-through">Rp.{{ number_format($product->price, 0) }}</span>
                                     <p class="card-text fs-5" style="color: #69B99D;">
-                                        <strong>
-                                            Rp.{{ number_format($product->sale_price, 0) }}
-                                        </strong>
+                                        <strong>Rp.{{ number_format($product->sale_price, 0) }}</strong>
                                     </p>
                                 @else
                                     <p class="card-text fs-5" style="color: #69B99D;">
-                                        <strong>
-                                            Rp.{{ number_format($product->price, 0) }}
-                                        </strong>
+                                        <strong>Rp.{{ number_format($product->price, 0) }}</strong>
                                     </p>
                                 @endif
-                                @for ($i = 0; $i < $product->rating; $i++)
-                                    <div class="bi-star-fill"></div>
-                                @endfor
-                                <a href="https://wa.me/6285691393029?text={{ urlencode('Saya ingin membeli produk ' . $product->name) }}"
-                                    class="btn btn-outline-success mt-2">
-                                    Pesan</a>
-                                <a href="{{ route('product.show', ['id' => $product->id]) }}"
-                                    class="btn btn-outline-success mt-2">
-                                    lihat Detail</a>
+                                <div class="d-flex justify-content-center">
+                                    @auth
+                                        <a href="https://wa.me/6285691393029?text={{ urlencode('Saya ingin membeli produk ' . $product->name) }}"
+                                            class="btn btn-outline-success me-2">Pesan</a>
+                                    @endauth
+                                    @guest
+                                        <a href="{{ route('login') }}" class="btn btn-outline-success me-2">Pesan</a>
+                                    @endguest
+                                    <a href="{{ route('product.show', ['id' => $product->id]) }}"
+                                        class="btn btn-outline-success">Lihat Detail</a>
+                                </div>
                             </div>
                         </div>
                     </div>
-                @endforeach
+                @empty
+                    <div class="alert alert-secondary w-100 text-center" role="alert">
+                        <h4>Produk belum tersedia</h4>
+                    </div>
+                @endforelse
             </div>
         </div>
     </section>
     <!-- Footer-->
-    <footer class="py-5 bg-dark">
+    <footer class="text-white pt-5 py-3" style="background-color: #082858">
         <div class="container">
-            <p class="m-0 text-center text-white">Copyright &copy; Rizky Apriansyah 2023</p>
+            <div class="row">
+                <div class="col-6 px-4">
+                    <a class="navbar-brand d-flex align-items-center h2" href="#" style="white-space: nowrap;">
+                        <h2 class="text-danger text-uppercase fw-bolder font-monospace">Ki</h2>
+                        <h2 class="text-success text-uppercase fw-bolder font-monospace">noy</h2>
+                        <h2 class="text-primary text-uppercase fw-bolder font-monospace">Sto</h2>
+                        <h2 class="text-warning text-uppercase fw-bolder font-monospace">re</h2>
+                    </a>
+                    <p>KinoyStore merupakan toko dimana anda mendapatkan gear game terbaik.</p>
+                </div>
+                <div class="col-6 px-4" style="font-size: 1.1rem;">
+                    <small class="md-5 d-block">
+                    Developed by</small>
+                    <strong class="d-block">Rizky Apriansyah</strong>
+                    <a class="icon text-white" href="https://www.linkedin.com/in/aprizky/" target="_blank"><i class="bi bi-linkedin"></i></a>
+                    <a class="icon text-warning" href="mailto:rizkyapriansyah625@gmail.com" target="_blank"><i class="bi bi-envelope"></i></a>
+                </div>
+            </div>
+            <hr>
+            <p class="text-center"> Copyright &copy; kinoy Store 2023</p>
         </div>
     </footer>
     <!-- Bootstrap core JS-->

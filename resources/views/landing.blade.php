@@ -139,14 +139,14 @@
                             </h4>
                             <p>
                                 Menjadi toko perlengkapan game terbaik di Indonesia dengan menyediakan produk terbaru
-                                dan terbaik untuk para gamer 1.
+                                dan terbaik untuk para gamer.
                         </div>
                         <div class="misi">
                             <h4 class="fw-bolder text-center">
                                 Misi :
                             </h4>
                             <p>
-                                memberikan layanan pelanggan
+                                Memberikan layanan pelanggan
                                 terbaik dan harga yang kompetitif untuk memenuhi semua kebutuhan game Anda.
                             </p>
                         </div>
@@ -272,8 +272,8 @@
                                 <div class="mt-4">
                                     <div>
                                         <p class="text-muted text-uppercase">Email</p>
-                                        <a href="mailto:kinoycv0@gmail.com"
-                                            class="text-muted fs-6 hvr-grow text-decoration-none">mail@kinoy.com</a>
+                                        <a href="mailto:kinoysto@kinoystore.my.id"
+                                            class="text-muted fs-6 hvr-grow text-decoration-none">kinoysto@kinoystore.my.id</a>
                                     </div>
                                 </div>
                             </div>
@@ -300,7 +300,7 @@
     </section>
     <!-- komentar -->
     <!-- Footer-->
-    <footer class="bg-dark text-white pt-5 py-3">
+    <footer class="text-white pt-5 py-3" style="background-color: #082858">
         <div class="container">
             <div class="row">
                 <div class="col-6 px-4">
@@ -312,13 +312,12 @@
                     </a>
                     <p>KinoyStore merupakan toko dimana anda mendapatkan gear game terbaik.</p>
                 </div>
-                <div class="col-6 px-4" style="font-size: 1.1rem;>
+                <div class="col-6 px-4" style="font-size: 1.1rem;">
                     <small class="md-5 d-block">
                     Developed by</small>
                     <strong class="d-block">Rizky Apriansyah</strong>
-                    <a class="icon" href="https://www.linkedin.com/in/aprizky/" target="_blank"><i class="bi bi-linkedin"></i></a>
-                    <a class="icon" href="https://github.com/rizkyapri" target="_blank"><i class="bi bi-github"></i></a>
-                    <a class="icon" href="mailto:rizkyapriansyah625@gmail.com" target="_blank"><i class="bi bi-envelope"></i></a>
+                    <a class="icon text-white" href="https://www.linkedin.com/in/aprizky/" target="_blank"><i class="bi bi-linkedin"></i></a>
+                    <a class="icon text-warning" href="mailto:rizkyapriansyah625@gmail.com" target="_blank"><i class="bi bi-envelope"></i></a>
                 </div>
             </div>
             <hr>

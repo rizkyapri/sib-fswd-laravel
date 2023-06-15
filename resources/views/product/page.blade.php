@@ -37,10 +37,14 @@
             </button>
             <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
                 <ul class="navbar-nav mb-2 mb-lg-0">
-                    <li class="nav-item"><a class="nav-link " aria-current="page" href="{{ route('landing') }}">Home</a></li>
-                    <li class="nav-item"><a class="nav-link " aria-current="page" href="{{ route('landing') }}#about">About</a></li>
-                    <li class="nav-item"><a class="nav-link active" aria-current="page" href="#products">Products</a></li>
-                    <li class="nav-item"><a class="nav-link " aria-current="page" href="{{ route('landing') }}#contact">Contact</a></li>
+                    <li class="nav-item"><a class="nav-link " aria-current="page" href="{{ route('landing') }}">Home</a>
+                    </li>
+                    <li class="nav-item"><a class="nav-link " aria-current="page"
+                            href="{{ route('landing') }}#about">About</a></li>
+                    <li class="nav-item"><a class="nav-link active" aria-current="page" href="#products">Products</a>
+                    </li>
+                    <li class="nav-item"><a class="nav-link " aria-current="page"
+                            href="{{ route('landing') }}#contact">Contact</a></li>
                     @auth
                         <li class="nav-item">
                             <a href="{{ route('dashboard') }}" class="btn btn-outline-secondary">
@@ -92,73 +96,61 @@
                     @endforeach
                 </ul>
             </div>
-
-
         </div>
         <div class="row text-center product py-3" data-aos="fade-up" data-aos-offset="250" data-aos-duration="900">
-            <div class="col d-flex gap-3 no-wrap">
-                @forelse ($products as $product)
-
-                    <div class="card" style="width: 290px;">
-                        @if ($product['sale_price'] != 0)
+            @forelse ($products as $product)
+                <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+                    <div class="card">
+                        @if ($product->sale_price != 0)
                             <!-- Sale badge-->
-                            <div class="badge bg-warning text-white position-absolute"
-                                style="top: 0.5rem; right: 0.5rem">Sale</div>
+                            <div class="badge bg-warning text-white position-absolute top-0 end-0">Sale</div>
                         @endif
-                        <img src="{{ asset('storage/product/' . $product->image) }}"
-                            class="img-fluid rounded-start p-3" alt="{{ $product->name }}">
-                        <small class="text-strong text-center">{{ $product->category->name }}</small>
+                        <img src="{{ asset('storage/product/' . $product->image) }}" class="card-img-top"
+                            alt="{{ $product->name }}">
                         <div class="card-body">
                             <h5 class="card-title fw-bold text-capitalize">{{ $product->name }}</h5>
-                            <small class="d-flex justify-content-start mb-3 text-muted fs-6">
+                            <small class="text-strong text-center">{{ $product->category->name }}</small>
+                            <div class="d-flex justify-content-center mb-3 text-muted fs-6">
                                 @for ($i = 0; $i < $product->rating; $i++)
                                     <div class="bi-star-fill"></div>
                                 @endfor
-                            </small>
+                            </div>
                             <!-- Product price-->
-                            @if ($product['sale_price'] != 0)
+                            @if ($product->sale_price != 0)
                                 <span
                                     class="text-muted text-decoration-line-through">Rp.{{ number_format($product->price, 0) }}</span>
                                 <p class="card-text fs-5" style="color: #69B99D;">
-                                    <strong>
-                                        Rp.{{ number_format($product->sale_price, 0) }}
-                                    </strong>
+                                    <strong>Rp.{{ number_format($product->sale_price, 0) }}</strong>
                                 </p>
                             @else
                                 <p class="card-text fs-5" style="color: #69B99D;">
-                                    <strong>
-                                        Rp.{{ number_format($product->price, 0) }}
-                                    </strong>
+                                    <strong>Rp.{{ number_format($product->price, 0) }}</strong>
                                 </p>
                             @endif
-                            @for ($i = 0; $i < $product->rating; $i++)
-                                <div class="bi-star-fill"></div>
-                            @endfor
-                            @auth
-                                <a href="https://wa.me/6285691393029?text={{ urlencode('Saya ingin membeli produk ' . $product->name) }}"
-                                    class="btn btn-outline-success mt-2">
-                                    Pesan</a>
-                            @endauth
-                            @guest
-                                <a href="{{ route('login') }}" class="btn btn-outline-success mt-2">
-                                    Pesan</a>
-                            @endguest
-                            <a href="{{ route('product.show', ['id' => $product->id]) }}"
-                                class="btn btn-outline-success mt-2">
-                                lihat Detail</a>
+                            <div class="d-flex justify-content-center">
+                                @auth
+                                    <a href="https://wa.me/6285691393029?text={{ urlencode('Saya ingin membeli produk ' . $product->name) }}"
+                                        class="btn btn-outline-success me-2">Pesan</a>
+                                @endauth
+                                @guest
+                                    <a href="{{ route('login') }}" class="btn btn-outline-success me-2">Pesan</a>
+                                @endguest
+                                <a href="{{ route('product.show', ['id' => $product->id]) }}"
+                                    class="btn btn-outline-success">Lihat Detail</a>
+                            </div>
                         </div>
                     </div>
-                @empty
-                    <div class="alert alert-secondary w-100 text-center" role="alert">
-                        <h4>Produk belum tersedia</h4>
-                    </div>
-                @endforelse
-            </div>
+                </div>
+            @empty
+                <div class="alert alert-secondary w-100 text-center" role="alert">
+                    <h4>Produk belum tersedia</h4>
+                </div>
+            @endforelse
         </div>
     </section>
     <!-- Product section-->
     <!-- Footer-->
-    <footer class="bg-dark text-white pt-5 py-3">
+    <footer class="text-white pt-5 py-3" style="background-color: #082858">
         <div class="container">
             <div class="row">
                 <div class="col-6 px-4">
@@ -170,13 +162,12 @@
                     </a>
                     <p>KinoyStore merupakan toko dimana anda mendapatkan gear game terbaik.</p>
                 </div>
-                <div class="col-6 px-4" style="font-size: 1.1rem;>
+                <div class="col-6 px-4" style="font-size: 1.1rem;">
                     <small class="md-5 d-block">
                     Developed by</small>
                     <strong class="d-block">Rizky Apriansyah</strong>
-                    <a class="icon" href="https://www.linkedin.com/in/aprizky/" target="_blank"><i class="bi bi-linkedin"></i></a>
-                    <a class="icon" href="https://github.com/rizkyapri" target="_blank"><i class="bi bi-github"></i></a>
-                    <a class="icon" href="mailto:rizkyapriansyah625@gmail.com" target="_blank"><i class="bi bi-envelope"></i></a>
+                    <a class="icon text-white" href="https://www.linkedin.com/in/aprizky/" target="_blank"><i class="bi bi-linkedin"></i></a>
+                    <a class="icon text-warning" href="mailto:rizkyapriansyah625@gmail.com" target="_blank"><i class="bi bi-envelope"></i></a>
                 </div>
             </div>
             <hr>

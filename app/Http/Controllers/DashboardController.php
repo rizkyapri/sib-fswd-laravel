@@ -14,6 +14,7 @@ class DashboardController extends Controller
     public function index()
     {
         $products = Product::with('category')->get();
+        $sliders = Slider::all();
         // menghitung jumlah total produk, kategori, dan user
         $productCount = Product::count();
         $categoryCount = Category::count();
@@ -29,22 +30,14 @@ class DashboardController extends Controller
 
         $totalCount = $approveProductCount->union($approveSliderCount)->sum('count');
 
-        // menggunakan metode orWhere
-        $rejectCount = Product::where('approve', 0)
-            ->orWhere(function ($query) {
-                $query->where('approve', 0)
-                    ->from('sliders');
-            })
-            ->count();
-
         // reject menggunakan union
-        // $rejectProductCount = Product::selectRaw('COUNT(*) as count')
-        //     ->where('approve', 0);
+        $rejectProductCount = Product::selectRaw('COUNT(*) as count')
+            ->where('approve', 0);
 
-        // $rejectSliderCount = Slider::selectRaw('COUNT(*) as count')
-        //     ->where('approve', 0);
+        $rejectSliderCount = Slider::selectRaw('COUNT(*) as count')
+            ->where('approve', 0);
 
-        // $totalRejectCount = $rejectProductCount->union($rejectSliderCount)->sum('count');
+        $totalRejectCount = $rejectProductCount->union($rejectSliderCount)->sum('count');
 
 
         if (Auth::user()->role->name == 'User') {
@@ -55,8 +48,9 @@ class DashboardController extends Controller
                 'category_count' => $categoryCount,
                 'user_count' => $userCount,
                 'approve_count' => $totalCount,
-                'reject_count' => $rejectCount,
+                'reject_count' => $totalRejectCount,
                 'products' => $products,
+                'sliders' => $sliders,
             ]);
         }
     }

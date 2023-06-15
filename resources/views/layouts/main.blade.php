@@ -135,8 +135,19 @@
             spaceBetween: 20,
             slidesPerView: "auto",
             navigation: {
-            nextEl: ".fa-square-caret-right",
-            prevEl: ".fa-square-caret-left",
+            nextEl: ".product-right",
+            prevEl: ".product-left",
+        },
+        });
+
+        // Initialize Swiper
+        var swiper = new Swiper('.slider-mySwiper', {
+            grabCursor: true,
+            spaceBetween: 20,
+            slidesPerView: "auto",
+            navigation: {
+            nextEl: ".slider-right",
+            prevEl: ".slider-left",
         },
         });
     </script>
