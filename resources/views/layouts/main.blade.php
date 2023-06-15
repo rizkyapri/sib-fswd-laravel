@@ -9,10 +9,13 @@
     <meta name="author" content="" />
     <link rel="shortcut icon" href="{{ asset('images/webicon.png') }}" type="image/x-icon">
     <title>Kinoy Store</title>
+    <!-- Link Swiper's CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css" />
     {{-- CSS link --}}
     <link href="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/style.min.css" rel="stylesheet" />
+    <!-- Bootstrap icons-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link href="{{ asset('css/styles.css') }}" rel="stylesheet" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous" />
     <style>
         .card {
             background-color: #fff;
@@ -109,15 +112,32 @@
         </div>
     </div>
     {{-- SCRIPT --}}
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous">
+    </script>
     <script src="{{ asset('js/scripts.js') }}"></script>
-    <script src="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/umd/simple-datatables.min.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/umd/simple-datatables.min.js"
+        crossorigin="anonymous"></script>
     <script src="{{ asset('js/datables-simple-demo.js') }}"></script>
+    <!-- animate JS-->
+    <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
+    {{-- <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script> --}}
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             const dataTable = new simpleDatatables.DataTable('#dataTable', {
                 // opsi-opsi konfigurasi yang Anda butuhkan
             });
+        });
+
+        // Initialize Swiper
+        var swiper = new Swiper('.mySwiper', {
+            grabCursor: true,
+            centeredSlides: false,
+            spaceBetween: 20,
+            slidesPerView: "auto",
+            navigation: {
+            nextEl: ".fa-square-caret-right",
+            prevEl: ".fa-square-caret-left",
+        },
         });
     </script>
 
