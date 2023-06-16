@@ -50,7 +50,7 @@
 
             @if (Auth::user()->role->name == 'User')
                 <a class="nav-link" href="{{ route('product.index') }}">
-                    <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
+                    <div class="sb-nav-link-icon"><i class="fas fa-shopping-bag"></i></div>
                     Product
                 </a>
             @endif

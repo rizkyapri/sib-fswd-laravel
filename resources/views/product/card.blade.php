@@ -5,6 +5,11 @@
         <div class="container-fluid px-4">
             <section class="py-5">
                 <div class="container">
+                    <h1 class="mt-1">Selamat Berbelanja, {{ Auth::user()->name }}</h1>
+                    <ol class="breadcrumb mb-4">
+                        <li class="breadcrumb-item active">Cari Produk? klik button dibawah!</li>
+                    </ol>
+                    <a class="btn btn-primary" href="{{ route('landing.page') }}"><i class="fas fa-search"></i>Cari barang</a>
                     <div class="row text-center product py-3" data-aos="fade-up" data-aos-offset="250" data-aos-duration="900">
                         @forelse ($products as $product)
                             <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
