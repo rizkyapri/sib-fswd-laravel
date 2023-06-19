@@ -272,8 +272,8 @@
                                 <div class="mt-4">
                                     <div>
                                         <p class="text-muted text-uppercase">Email</p>
-                                        <a href="mailto:kinoysto@kinoystore.my.id"
-                                            class="text-muted fs-6 hvr-grow text-decoration-none">kinoysto@kinoystore.my.id</a>
+                                        <a href="mailto:kinoystore@kinoystore.my.id"
+                                            class="text-muted fs-6 hvr-grow text-decoration-none">kinoystore@kinoystore.my.id</a>
                                     </div>
                                 </div>
                             </div>
