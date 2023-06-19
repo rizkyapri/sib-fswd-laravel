@@ -12,6 +12,7 @@
                     <a class="btn btn-primary" href="{{ route('landing.page') }}"><i class="fas fa-search"></i>Cari barang</a>
                     <div class="row text-center product py-3" data-aos="fade-up" data-aos-offset="250" data-aos-duration="900">
                         @forelse ($products as $product)
+                        @if($product->approve)
                             <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
                                 <div class="card h-100">
                                     @if ($product->sale_price != 0)
@@ -54,6 +55,7 @@
                                     </div>
                                 </div>
                             </div>
+                            @endif
                         @empty
                             <div class="alert alert-secondary w-100 text-center" role="alert">
                                 <h4>Produk belum tersedia</h4>
