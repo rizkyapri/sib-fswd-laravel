@@ -44,7 +44,7 @@ class LandingController extends Controller
             })->get();
         } else {
             // mengambil 8 data produk secara acak
-            $products = Product::where('approve', 1)->inRandomOrder()->limit(8)->get();
+            $products = Product::where('approve', 1)->inRandomOrder()->get();
         }
 
         return view('product.page', compact('products', 'categories', 'selectedCategory'));
@@ -63,7 +63,7 @@ class LandingController extends Controller
                 ->get();
         } else {
             // mengambil 8 data produk secara acak
-            $products = Product::where('approve', 1)->inRandomOrder()->limit(8)->get();
+            $products = Product::where('approve', 1)->inRandomOrder()->get();
         }
 
         return view('product.find', compact('products', 'searchTerm'));
